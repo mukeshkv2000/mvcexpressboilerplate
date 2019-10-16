@@ -1,21 +1,30 @@
-$(function() {
-  setTimeout(function() {
-    $("#message").hide("slow");
-  }, 2000);
-});
+$(document).ready(function() {
+  $("#changeQuote").on("submit", function(e) {
+    console.log("hit");
+    e.preventDefault();
+    var data = $(".input").val();
+    $.ajax({
+      type: "post",
+      url: "/ajax",
+      data: data,
+      dataType: "text",
+      success: function(data, status, xhr) {
+        // success callback function
+        $("h1").text(this.data);
+      }
+    });
+  });
 
-$(".avtar").click(function() {
-  $(".dropdown").toggle("slow");
-});
+  $(".btn").click(function() {
+    $(".text").text("loading . . .");
 
-("use strict");
-
-var searchBox = document.querySelectorAll(
-  '.search-box input[type="text"] + span'
-);
-
-searchBox.forEach(elm => {
-  elm.addEventListener("click", () => {
-    elm.previousElementSibling.value = "";
+    $.ajax({
+      type: "GET",
+      url: "https://api.meetup.com/2/cities",
+      success: function(data) {
+        $(".text").text(JSON.stringify(data));
+      },
+      dataType: "jsonp"
+    });
   });
 });

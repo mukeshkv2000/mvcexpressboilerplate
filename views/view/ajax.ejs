@@ -1,0 +1,32 @@
+<%- include('../includes/header.ejs')%>
+
+<nav>
+  <%- include('../includes/nav.ejs')%>
+</nav>
+<main>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12 ">
+        Quote:
+        <h1 id="id"><%= quote%></h1>
+        <form method="post" id="changeQuote">
+          <input
+            type="text"
+            class="input"
+            placeholder="Set quote of the day"
+            name="quote"
+            value="serum"
+          />
+          <input value="save" type="submit" />
+        </form>
+      </div>
+      <div class="col-12">
+        <hr />
+        <button type="button" class="btn btn-primary">Click me!</button>
+        <p class="text">Replace me!!</p>
+      </div>
+    </div>
+  </div>
+</main>
+
+<%- include('../includes/footer.ejs')%>

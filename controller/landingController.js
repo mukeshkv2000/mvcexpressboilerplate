@@ -4,6 +4,7 @@ exports.land =
   ("/",
   (req, res) => {
     res.render("index");
+    logger.info("landed index");
   });
 exports.addMember =
   ("/",
@@ -15,6 +16,7 @@ exports.addMember =
       res.status(201).send(member);
       // res.render("addMember", { success: " Suucessfully added" });
     } catch (e) {
+      logger.error("error  add ", e);
       res.status(501).send(e);
     }
   });
